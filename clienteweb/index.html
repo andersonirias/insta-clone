@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link href="public/css/estilo.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="public/js/postagens.js"></script>
   </head>
   <body>
@@ -13,15 +14,64 @@
 	  <div class="container">
 		<div class="col-md-12">
 		  <div class="container-fluid">
-		    <img alt="Instagram Clone - Versão WEB" src="public/images/logo2.jpg" class="logo2">
-			<img alt="Incluir" src="public/images/incluir.jpg" class="pull-right btn-incluir" id="btn_incluir">						
+			<a href="/home" title="Inicio">
+		      <img alt="Instagram Clone - Versão WEB" src="public/images/logo2.jpg" class="logo2">
+		    </a>
+		    <a href="#">
+			  <img alt="Incluir" src="public/images/incluir.jpg" class="pull-right btn-incluir" id="btn_incluir">	
+			</a>					
 		  </div>
 		</div>
 	  </div>
 	</nav>
 	<div class="container">
 	  <div class="col-md-2"></div>
-	  <div class="col-md-8" id="container_timeline"></div>	
+	  <div class="col-md-8" id="container_timeline"></div>
+	  <div class="container" style="display:none" id="container_form">
+			<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-11">
+						<h4>Publicar uma foto</h4>
+					</div>
+					<div class="col-md-1">
+						<a href="/home" title="Inicio">
+							<img title="Voltar" src="public/images/voltar.png" style="width:35px; height:35px;"
+							>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel-body">
+				<div class="form-group">
+					<input type="file" name="arquivo" id="arquivo" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<input type="text" name="titulo" id="titulo" class="form-control" placeholder="Titulo" autocomplete="off">
+				</div>
+
+				<div class="form-group">
+					<button class="btn btn-success" id="btn-publicar">Publicar</button>
+					<button class="btn btn-danger" id="btn-cancelar-publicacao">Cancelar</button>
+				</div>
+			</div>
+
+			<div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog modal-sm">
+			 	    <div class="modal-content">
+			    	    <div class="modal-header">
+			        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        	</div>
+			        	<div class="modal-body">
+			          		<h4 id="mensagem"></h4>
+			        	</div>
+			      	</div>
+			    </div>
+			</div>
+		</div>	
 	</div>
   </body>
 </html>

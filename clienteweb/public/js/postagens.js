@@ -34,5 +34,49 @@ $(document).ready(function(){
   }
 
   carrega_postagens();
+  
+  $('#btn_incluir').click(function(){
+	  
+    $('#container_timeline').hide();
+	$('#container_form').show();
+	
+  });
+
+  $('#btn-cancelar-publicacao').click(function(){
+	  
+    $('#container_timeline').show();
+	$('#container_form').hide();
+	return false;
+	
+  });
+
+  $('#btn-publicar').click(function(){
+
+    var formData = new FormData();
+
+	var arquivo = document.getElementById("arquivo").files[0];
+	var titulo = document.getElementById("titulo").value;
+
+	formData.append("arquivo", arquivo);
+	formData.append("titulo", titulo);
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.onreadystatechange = function(){
+		
+	  if(xhr.readyState == 4){
+		  
+	    var resposta = JSON.parse(xhr.responseText);
+        document.getElementById('mensagem').innerHTML = resposta.status;
+		$("#myModal").modal("show");
+		
+      }
+
+    }
+	
+	xhr.open("POST", "http://localhost:9090/api");
+	xhr.send(formData);
+
+   });
 
 });

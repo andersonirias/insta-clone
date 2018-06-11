@@ -36,7 +36,7 @@ console.log('Servidor HTTP esta escutando na porta ' + port);
 app.get('/api', function(req, res){
   db.open( function(err, mongoclient){
     mongoclient.collection('postagens', function(err, collection){
-      collection.find().toArray(function(err, results){
+      collection.find().sort({_id: -1}).toArray(function(err, results){
         if(err){
 		  res.json(err);
 		} else {
@@ -58,4 +58,55 @@ app.get('/imagens/:imagem', function(req, res){
     res.writeHead(200, { 'content-type' : 'image/jpg'});
 	res.end(content);
   })
+});
+
+app.post('/api', function(req, res){
+
+  var date = new Date();
+  time_stamp = date.getTime();
+
+  var url_imagem = time_stamp + '_' + req.files.arquivo.originalFilename;
+  var path_origem = req.files.arquivo.path;
+  var path_destino = './uploads/' + url_imagem;
+
+  fs.rename(path_origem, path_destino, function(err){
+
+    if(err){
+
+      res.status(500).json({error: err});
+    return;
+
+    }
+
+    var dados = {
+      url_imagem: url_imagem,
+      titulo: req.body.titulo
+    }
+
+    db.open( function(err, mongoclient){
+
+      mongoclient.collection('postagens', function(err, collection){
+
+        collection.insert(dados, function(err, records){
+
+          if(err){
+   
+            res.json({'status' : 'Falha ao realizar a inclusão'});
+
+          } else {
+
+            res.json({'status' : 'Inclusão realizada com sucesso'});
+
+          }
+
+          mongoclient.close();
+
+        });
+
+      });
+
+    });
+
+  });
+
 });
