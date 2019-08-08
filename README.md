@@ -6,6 +6,15 @@ Trabalho de sistemas distribuídos desenvolvido no sétimo período do curso de 
 
 O Insta Clone é um clone do instagram web, criado para estudo de webservices, criação de webservices e clientes que os consumam. Inicialmente somente foi implementado a função que lista os posts na timeline do instagram.
 
+## Dependências
+
+* Node.js
+  * Site oficial: https://nodejs.org/en/
+* NPM
+  * Site oficial: https://www.npmjs.com/
+* MongoDB
+  * Site oficial: https://www.mongodb.com/
+
 ## Utilização
 
 - Clone o projeto
